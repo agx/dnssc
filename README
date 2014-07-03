@@ -1,0 +1,8 @@
+dnssc
+-----
+DLink ships a utility named SmartConsole to monitor events from their DLINK DGS
+1100 series switches which is windows only. This is a quick hack to fetch the
+events on any OS running python name D*-Not-So-Smart-Console (dnssc).
+
+If you're aware of other tools doing this or if it works for you let me
+(agx@sigxcpu.org) know.
