@@ -58,9 +58,11 @@ def mac_to_string(mac):
 def main(argv):
     port = 64514
     parser = OptionParser(usage='%prog [options]')
-    parser.add_option("--switch-ip", dest="switchip",
-                      default='10.90.90.90',
-                      help="IP of the switch to monitor")
+    parser.add_option("--switch-ip", dest="switchips",
+                      metavar='ADDRESS',
+                      default=['10.90.90.90'],
+                      action='append',
+                      help="IPv4 address of the switch to monitor")
     (options, args) = parser.parse_args(argv[1:])
     
     sock = socket.socket(socket.AF_INET,
@@ -69,7 +71,7 @@ def main(argv):
     
     while True:
         data, addr = sock.recvfrom(1024)
-        if addr[0] == options.switchip:
+        if addr[0] in options.switchips:
             msg = SmartConsoleMsg.from_data(data)
             print """Event on %s
     Model: %s
